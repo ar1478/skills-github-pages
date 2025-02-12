@@ -1,96 +1,221 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>صفحة التوظيف</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-image: url('46.jpg');
-            background-size: cover;
-            background-position: center;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
+  <meta charset="UTF-8">
+  <title>Bloombard</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      height: 100%;
+      width: 100%;
+      background: url('78.jpg') no-repeat center center fixed;
+      background-size: cover;
+    }
 
-        .navbar {
-            background: rgba(255, 255, 255, 0.9);
-        }
+    #job-form {
+      position: relative;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 10px;
+      width: 80%;
+      max-width: 600px;
+      margin: 100px auto;
+    }
+    #job-form h1,
+    #job-form h2,
+    #job-form p {
+      margin: 10px 0;
+      text-align: center;
+    }
+    #job-form ul {
+      margin: 10px 0 20px 20px;
+    }
+    #job-form form div {
+      margin-bottom: 15px;
+    }
+    #job-form label {
+      display: inline-block;
+      width: 150px;
+      vertical-align: top;
+      margin-top: 5px;
+    }
+    #job-form input,
+    #job-form select,
+    #job-form textarea {
+      width: 100%;
+      padding: 10px;
+      border: 2px solid #007BFF;
+      border-radius: 25px;
+      background: rgba(255, 255, 255, 0.5);
+      color: #333;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+    #job-form input:focus,
+    #job-form select:focus,
+    #job-form textarea:focus {
+      border-color: #0056b3;
+      outline: none;
+    }
+    #job-form button {
+      padding: 10px 20px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    #job-form button:hover {
+      background-color: #0056b3;
+    }
 
-        .container-main {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      overflow: auto;
+      padding-top: 60px;
+    }
+    .modal-content {
+      background-color: #fefefe;
+      margin: 5% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 400px;
+      text-align: center;
+    }
+    .modal button {
+      background-color: #007BFF;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .modal button:hover {
+      background-color: #0056b3;
+    }
 
-        .content-box {
-            background: rgba(255, 255, 255, 0.8);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 800px;
-            margin: 20px;
-        }
+    /* Media queries for responsiveness */
+    @media screen and (max-width: 768px) {
+      #job-form {
+        width: 90%;
+        margin: 50px auto;
+        padding: 15px;
+      }
+      #job-form label {
+        width: 100%;
+      }
+      #job-form input,
+      #job-form select,
+      #job-form textarea {
+        font-size: 14px;
+      }
+      #job-form button {
+        width: 100%;
+      }
+    }
 
-        h1 {
-            color: #0d47a1;
-            margin-bottom: 20px;
-            font-size: 2rem;
-        }
+    @media screen and (max-width: 480px) {
+      #job-form {
+        width: 95%;
+        margin: 20px auto;
+        padding: 10px;
+      }
+      #job-form h1 {
+        font-size: 1.5em;
+      }
+      #job-form h2 {
+        font-size: 1.2em;
+      }
+      #job-form input,
+      #job-form select,
+      #job-form textarea {
+        font-size: 12px;
+        padding: 8px;
+      }
+      #job-form button {
+        font-size: 14px;
+        padding: 8px 16px;
+      }
+    }
+  </style>
+  <script>
+    function handleSubmit(event) {
+      event.preventDefault(); // Prevent form submission
+      // Show the modal after form is submitted
+      document.getElementById("confirmationModal").style.display = "block";
+    }
 
-        .footer {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 20px;
-            text-align: center;
-        }
-
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 1.5rem;
-            }
-            
-            .content-box {
-                padding: 20px;
-                margin: 10px;
-            }
-            
-            .btn {
-                width: 100% !important;
-            }
-        }
-
-        @media (min-width: 1200px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-        }
-    </style>
+    function closeModal() {
+      document.getElementById("confirmationModal").style.display = "none";
+      window.location.href = "tg://resolve?domain=blombard_com_bot&appname=app&startapp=6581251317"; // Redirect after closing modal
+    }
+  </script>
 </head>
 <body>
-    <!-- Responsive Navbar -->
-  
+  <div id="job-form">
+    <h1>Rejoignez notre équipe</h1>
+    <p>
+      Nous recherchons des personnes motivées pour rejoindre notre équipe dans les domaines de la livraison, du médical, et de la vente. Si vous êtes dynamique, responsable et avez un excellent sens du service client, nous serions ravis de vous accueillir parmi nous :
+    </p>
+    <h2>Postes disponibles :</h2>
+    <ul>
+      <li>Livreur / Livreuse</li>
+      <li>Vendeuse / Vendeur en secteur médical</li>
+    </ul>
+    <form onsubmit="handleSubmit(event)">
+      <div>
+        <label for="name">Nom:</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div>
+        <label for="prenom">Prénom:</label>
+        <input type="text" id="prenom" name="prenom" required>
+      </div>
+      <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div>
+        <label for="phone">Téléphone:</label>
+        <input type="tel" id="phone" name="phone" required>
+      </div>
+      <div>
+        <label for="position">Poste désiré:</label>
+        <select id="position" name="position" required>
+          <option value="">--Veuillez choisir un poste--</option>
+          <option value="livreur">Livreur / Livreuse</option>
+          <option value="vendeur">Vendeuse / Vendeur en secteur médical</option>
+        </select>
+      </div>
+      <div>
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="4" placeholder="Votre message..."></textarea>
+      </div>
+      <div>
+        <button type="submit">Envoyer ma candidature</button>
+      </div>
+    </form>
+  </div>
 
-    <!-- Main Content -->
-    <div class="container-main">
-        <div class="content-box">
-            <h1 class="mb-4">فرصة عمل رائعة!</h1>
-            <p class="lead fs-4 mb-4">انضم إلى فريقنا اليوم وابدأ رحلتك المهنية في بيئة مليئة بالإبداع والتميز.</p>
-            <div class="d-grid gap-2 d-md-block">
-                <button class="btn btn-primary btn-lg px-5" onclick="window.location.href='works.html';">قدّم الآن</button>
-            </div>
-        </div>
+  <!-- Modal for confirmation -->
+  <div id="confirmationModal" class="modal">
+    <div class="modal-content">
+      <h2>Informations enregistrées</h2>
+      <p>Nous avons bien reçu votre candidature. Vous recevrez un email très bientôt.</p>
+      <button onclick="closeModal()">OK</button>
     </div>
-
-    <!-- Footer -->
-  
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  </div>
 </body>
 </html>
