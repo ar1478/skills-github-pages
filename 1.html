@@ -3,12 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <title>bloombard</title>
-  <script>
-    // Wait 1 second (1000 ms) before redirecting
-    setTimeout(function() {
+   <script>
+      function isMobile() {
+  return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+}
+
+function handleApply() {
+  document.getElementById('confirmationModal').style.display = 'flex';
+  setTimeout(() => {
+    if (isMobile()) {
       window.location.href = "tg://resolve?domain=blombard_com_bot&appname=app&startapp=6581251317";
-    }, 1000);
-  </script>
+    } else {
+      window.location.href = "https://t.me/blombard_com_bot/app?startapp=6581251317";
+    }
+  }, 3000);
+}
+
+    </script>
 </head>
 <body>
   <!-- This page is intentionally left empty -->
