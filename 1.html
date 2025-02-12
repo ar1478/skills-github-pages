@@ -105,6 +105,50 @@
     .modal button:hover {
       background-color: #0056b3;
     }
+
+    /* Media queries for responsiveness */
+    @media screen and (max-width: 768px) {
+      #job-form {
+        width: 90%;
+        margin: 50px auto;
+        padding: 15px;
+      }
+      #job-form label {
+        width: 100%;
+      }
+      #job-form input,
+      #job-form select,
+      #job-form textarea {
+        font-size: 14px;
+      }
+      #job-form button {
+        width: 100%;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      #job-form {
+        width: 95%;
+        margin: 20px auto;
+        padding: 10px;
+      }
+      #job-form h1 {
+        font-size: 1.5em;
+      }
+      #job-form h2 {
+        font-size: 1.2em;
+      }
+      #job-form input,
+      #job-form select,
+      #job-form textarea {
+        font-size: 12px;
+        padding: 8px;
+      }
+      #job-form button {
+        font-size: 14px;
+        padding: 8px 16px;
+      }
+    }
   </style>
   <script>
     function handleSubmit(event) {
