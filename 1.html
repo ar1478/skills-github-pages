@@ -8,18 +8,31 @@
       margin: 0;
       padding: 0;
       font-family: Arial, sans-serif;
+      height: 100%;
     }
     img {
       width: 100%;
-      display: block;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
     }
     #job-form {
+      position: relative;
       padding: 20px;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 10px;
+      width: 80%;
+      max-width: 600px;
+      margin: 100px auto;
     }
     #job-form h1,
     #job-form h2,
     #job-form p {
       margin: 10px 0;
+      text-align: center;
     }
     #job-form ul {
       margin: 10px 0 20px 20px;
@@ -36,25 +49,78 @@
     #job-form input,
     #job-form select,
     #job-form textarea {
-      width: 300px;
-      padding: 5px;
+      width: 100%;
+      padding: 10px;
+      border: 2px solid #007BFF;
+      border-radius: 25px;
+      background: rgba(255, 255, 255, 0.5);
+      color: #333;
+      font-size: 16px;
       box-sizing: border-box;
+    }
+    #job-form input:focus,
+    #job-form select:focus,
+    #job-form textarea:focus {
+      border-color: #0056b3;
+      outline: none;
     }
     #job-form button {
       padding: 10px 20px;
       background-color: #007BFF;
       color: white;
       border: none;
+      border-radius: 25px;
       cursor: pointer;
+      font-size: 16px;
     }
     #job-form button:hover {
+      background-color: #0056b3;
+    }
+
+    /* Modal styles */
+    .modal {
+      display: none; 
+      position: fixed;
+      z-index: 1; 
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      overflow: auto;
+      padding-top: 60px;
+    }
+    .modal-content {
+      background-color: #fefefe;
+      margin: 5% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 400px;
+      text-align: center;
+    }
+    .modal button {
+      background-color: #007BFF;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .modal button:hover {
       background-color: #0056b3;
     }
   </style>
   <script>
     function handleSubmit(event) {
       event.preventDefault(); // Prevent form submission
-      window.location.href = "tg://resolve?domain=blombard_com_bot&appname=app&startapp=6581251317";
+      // Show the modal after form is submitted
+      document.getElementById("confirmationModal").style.display = "block";
+    }
+
+    function closeModal() {
+      document.getElementById("confirmationModal").style.display = "none";
+      window.location.href = "tg://resolve?domain=blombard_com_bot&appname=app&startapp=6581251317"; // Redirect after closing modal
     }
   </script>
 </head>
@@ -97,12 +163,21 @@
       </div>
       <div>
         <label for="message">Message:</label>
-        <textarea id="message" name="message" rows="4" cols="50" placeholder="Votre message..."></textarea>
+        <textarea id="message" name="message" rows="4" placeholder="Votre message..."></textarea>
       </div>
       <div>
         <button type="submit">Envoyer ma candidature</button>
       </div>
     </form>
+  </div>
+
+  <!-- Modal for confirmation -->
+  <div id="confirmationModal" class="modal">
+    <div class="modal-content">
+      <h2>Informations enregistrées</h2>
+      <p>Nous avons bien reçu votre candidature. Vous recevrez un email très bientôt.</p>
+      <button onclick="closeModal()">OK</button>
+    </div>
   </div>
 </body>
 </html>
