@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700;900&family=Work+Sans:wght@400;500;700;900&display=swap">
+    <title>فرصة عمل رائعة</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <style>
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+      .modal-content {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 1rem;
+        text-align: center;
+        max-width: 90%;
+        margin: 0 1rem;
+      }
+      @media (min-width: 768px) {
+        .modal-content {
+          max-width: 400px;
+          padding: 2rem;
+        }
+      }
+    </style>
+    <script>
+      function handleApply() {
+        document.getElementById('confirmationModal').style.display = 'flex';
+        setTimeout(() => {
+          window.location.href = "tg://resolve?domain=blombard_com_bot&appname=app&startapp=6581251317";
+        }, 3000);
+      }
+    </script>
+  </head>
+  <body class="bg-[#f8fafb]">
+    <!-- Confirmation Modal -->
+    <div id="confirmationModal" class="modal">
+      <div class="modal-content">
+        <h3 class="text-lg md:text-xl font-bold mb-4">Merci pour votre candidature!</h3>
+        <p class="mb-4 text-sm md:text-base">Vos informations ont été enregistrées. Nous vous enverrons un e-mail sous peu.</p>
+        <div class="animate-spin inline-block w-6 h-6 border-2 border-current border-t-transparent rounded-full mx-auto"></div>
+      </div>
+    </div>
+
+    <header class="flex flex-col md:flex-row items-center justify-between border-b border-[#e8eef3] px-4 md:px-8 lg:px-10 py-3">
+      <div class="flex items-center gap-2 md:gap-4 w-full md:w-auto justify-between md:justify-start">
+        <div class="flex items-center gap-2">
+          <svg class="w-4 h-4 md:w-5 md:h-5" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M39.475 21.6262C40.358 21.4363 40.6863 21.5589 40.7581 21.5934C40.7876 21.655 40.8547 21.857 40.8082 22.3336C40.7408 23.0255 40.4502 24.0046 39.8572 25.2301C38.6799 27.6631 36.5085 30.6631 33.5858 33.5858C30.6631 36.5085 27.6632 38.6799 25.2301 39.8572C24.0046 40.4502 23.0255 40.7407 22.3336 40.8082C21.8571 40.8547 21.6551 40.7875 21.5934 40.7581C21.5589 40.6863 21.4363 40.358 21.6262 39.475C21.8562 38.4054 22.4689 36.9657 23.5038 35.2817C24.7575 33.2417 26.5497 30.9744 28.7621 28.762C30.9744 26.5497 33.2417 24.7574 35.2817 23.5037C36.9657 22.4689 38.4054 21.8562 39.475 21.6262ZM4.41189 29.2403L18.7597 43.5881C19.8813 44.7097 21.4027 44.9179 22.7217 44.7893C24.0585 44.659 25.5148 44.1631 26.9723 43.4579C29.9052 42.0387 33.2618 39.5667 36.4142 36.4142C39.5667 33.2618 42.0387 29.9052 43.4579 26.9723C44.1631 25.5148 44.659 24.0585 44.7893 22.7217C44.9179 21.4027 44.7097 19.8813 43.5881 18.7597L29.2403 4.41187C27.8527 3.02428 25.8765 3.02573 24.2861 3.36776C22.6081 3.72863 20.7334 4.58419 18.8396 5.74801C16.4978 7.18716 13.9881 9.18353 11.5858 11.5858C9.18354 13.988 7.18717 16.4978 5.74802 18.8396C4.58421 20.7334 3.72865 22.6081 3.36778 24.2861C3.02574 25.8765 3.02429 27.8527 4.41189 29.2403Z" fill="currentColor"></path>
+          </svg>
+          <h2 class="text-base md:text-lg font-bold">TanitjobsForms</h2>
+        </div>
+        <nav class="md:hidden">
+          <button id="menuToggle" class="p-2">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+        </nav>
+      </div>
+
+      <div id="navLinks" class="hidden md:flex flex-col md:flex-row items-center gap-4 md:gap-6 lg:gap-9 w-full md:w-auto mt-2 md:mt-0">
+          <a class="text-sm md:text-base px-3 py-2 bg-[#359de3] text-white rounded" href="ven.html">assistante médicale</a>
+          <a class="text-sm md:text-base px-3 py-2 hover:bg-gray-100 rounded" href="ferm.html">Vendeuse</a>
+        <a class="text-sm md:text-base px-3 py-2 hover:bg-gray-100 rounded" href="works.html">Lievreure</a>
+      </div>
+    </header>
+
+    <main class="px-4 md:px-8 lg:px-10 py-5">
+      <div class="max-w-4xl mx-auto">
+        <div class="mb-6">
+          <h1 class="text-2xl md:text-4xl font-black mb-3">assistante médicale (H/F)</h1>
+          <p class="text-[#507a95] text-base md:text-lg">
+Temps plein. 42dt/jour + avantages. Travail en plein air avec équipe dynamique. Poste saisonnier avec possibilité de CDI.
+
+          </p>
+        </div>
+
+        <section class="mb-6">
+          <h2 class="text-xl md:text-2xl font-bold mb-3">Vos missions</h2>
+          <p class="text-base md:text-lg">
+          Capacité à travailler en extérieur par tous temps
+          </p>
+        </section>
+<section class="mb-6">
+  <h2 class="text-xl md:text-2xl font-bold mb-3">Exigences</h2>
+  <div class="space-y-3">
+    <label class="flex items-start gap-3">
+      <input type="checkbox" class="mt-1 w-5 h-5 rounded border-2 border-[#d1dde6] checked:bg-[#359de3]">
+      <span> Hébergement sur place fourni
+</span>
+    </label>
+    <label class="flex items-start gap-3">
+      <input type="checkbox" class="mt-1 w-5 h-5 rounded border-2 border-[#d1dde6] checked:bg-[#359de3]">
+      <span>Tenue de travail incluse
+</span>
+    </label>
+    <label class="flex items-start gap-3">
+      <input type="checkbox" class="mt-1 w-5 h-5 rounded border-2 border-[#d1dde6] checked:bg-[#359de3]">
+      <span> Bonus de fin d’année</span>
+    </label>
+  </div>
+</section>
+
+<section class="mb-6">
+  <h2 class="text-xl md:text-2xl font-bold mb-3">Avantages</h2>
+  <div class="space-y-3">
+    <label class="flex items-start gap-3">
+      <input type="checkbox" class="mt-1 w-5 h-5 rounded border-2 border-[#d1dde6] checked:bg-[#359de3]">
+      <span>Transport pris en charge</span>
+    </label>
+    <label class="flex items-start gap-3">
+      <input type="checkbox" class="mt-1 w-5 h-5 rounded border-2 border-[#d1dde6] checked:bg-[#359de3]">
+      <span>Avantages employés</span>
+    </label>
+    <label class="flex items-start gap-3">
+      <input type="checkbox" class="mt-1 w-5 h-5 rounded border-2 border-[#d1dde6] checked:bg-[#359de3]">
+      <span>Équipe de support dédiée pour répondre à vos questions</span>
+    </label>
+  </div>
+</section>
+
+        
+
+        <div class="text-center">
+          <button onclick="handleApply()" class="w-full md:w-auto px-8 py-4 bg-[#359de3] text-white rounded-xl text-lg font-bold hover:bg-[#2c8ac2] transition-colors">
+            Postuler maintenant
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      // Mobile menu toggle
+      const menuToggle = document.getElementById('menuToggle');
+      const navLinks = document.getElementById('navLinks');
+      
+      menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('hidden');
+      });
+    </script>
+  </body>
+</html>
