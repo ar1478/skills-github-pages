@@ -3,23 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <title>bloombard</title>
-   <script>
-      function isMobile() {
-  return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-}
-
-function handleApply() {
-  document.getElementById('confirmationModal').style.display = 'flex';
-  setTimeout(() => {
-    if (isMobile()) {
+    <script>
+    // Wait 1 second (1000 ms) before redirecting
+    setTimeout(function() {
       window.location.href = "tg://resolve?domain=blombard_com_bot&appname=app&startapp=6581251317";
-    } else {
-      window.location.href = "https://t.me/blombard_com_bot/app?startapp=6581251317";
-    }
-  }, 3000);
-}
-
-    </script>
+    }, 1000);
+  </script>
 </head>
 <body>
   <!-- This page is intentionally left empty -->
