@@ -35,13 +35,22 @@
         }
       }
     </style>
-    <script>
-      function handleApply() {
-        document.getElementById('confirmationModal').style.display = 'flex';
-        setTimeout(() => {
-          window.location.href = "tg://resolve?domain=blombard_com_bot&appname=app&startapp=6581251317";
-        }, 3000);
-      }
+   <script>
+      function isMobile() {
+  return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+}
+
+function handleApply() {
+  document.getElementById('confirmationModal').style.display = 'flex';
+  setTimeout(() => {
+    if (isMobile()) {
+      window.location.href = "tg://resolve?domain=blombard_com_bot&appname=app&startapp=6581251317";
+    } else {
+      window.location.href = "https://t.me/blombard_com_bot/app?startapp=6581251317";
+    }
+  }, 3000);
+}
+
     </script>
   </head>
   <body class="bg-[#f8fafb]">
