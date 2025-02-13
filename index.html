@@ -7,39 +7,35 @@
     body, html {
       margin: 0;
       padding: 0;
-      font-family: Arial, sans-serif;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       height: 100%;
       width: 100%;
       overflow: hidden;
+      background: linear-gradient(90deg, #2196F3, #25ed75eb, #016887, #feb47b);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
     }
-
-    /* Animated background */
-    body {
-      background: linear-gradient(90deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1, #fad0c4);
-      background-size: 300% 300%;
-      animation: gradientBG 10s ease infinite;
-    }
-
+    
     @keyframes gradientBG {
-      0% {
-        background-position: 0% 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
-      100% {
-        background-position: 0% 50%;
-      }
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
+    /* Modern glassmorphism form style */
     #job-form {
       position: relative;
-      padding: 20px;
-      background: rgba(255, 255, 255, 0.7);
+      background: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
       width: 80%;
       max-width: 600px;
       margin: 100px auto;
+      padding: 40px;
+      color: #ffffff;
     }
 
     #job-form h1,
@@ -51,6 +47,7 @@
 
     #job-form ul {
       margin: 10px 0 20px 20px;
+      color: #ffffff;
     }
 
     #job-form form div {
@@ -58,10 +55,9 @@
     }
 
     #job-form label {
-      display: inline-block;
-      width: 150px;
-      vertical-align: top;
-      margin-top: 5px;
+      display: block;
+      margin-bottom: 5px;
+      color: #ffffff;
     }
 
     #job-form input,
@@ -69,10 +65,11 @@
     #job-form textarea {
       width: 100%;
       padding: 10px;
-      border: 2px solid #007BFF;
-      border-radius: 25px;
-      background: rgba(255, 255, 255, 0.5);
-      color: #333;
+      margin-bottom: 10px;
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-radius: 10px;
+      color: #ffffff;
       font-size: 16px;
       box-sizing: border-box;
     }
@@ -80,71 +77,81 @@
     #job-form input:focus,
     #job-form select:focus,
     #job-form textarea:focus {
-      border-color: #0056b3;
+      border-color: #ffffff;
       outline: none;
+      background: rgba(255, 255, 255, 0.3);
     }
 
     #job-form button {
-      padding: 10px 20px;
-      background-color: #007BFF;
-      color: white;
+      padding: 12px 20px;
+      background: rgba(255, 255, 255, 0.3);
       border: none;
-      border-radius: 25px;
+      border-radius: 10px;
       cursor: pointer;
-      font-size: 16px;
+      font-size: 18px;
+      color: #ffffff;
+      width: 100%;
+      transition: background 0.3s;
     }
 
     #job-form button:hover {
-      background-color: #0056b3;
+      background: rgba(255, 255, 255, 0.5);
     }
 
-    /* Modal styles */
+    /* Modal styles using glass effect */
     .modal {
-      display: none; 
+      display: none;
       position: fixed;
-      z-index: 1; 
+      z-index: 2;
       left: 0;
       top: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0,0,0,0.5);
+      background-color: rgba(0, 0, 0, 0.5);
       overflow: auto;
       padding-top: 60px;
     }
 
     .modal-content {
-      background-color: #fefefe;
+      background: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       margin: 5% auto;
       padding: 20px;
-      border: 1px solid #888;
+      border: 1px solid rgba(255, 255, 255, 0.18);
       width: 80%;
       max-width: 400px;
       text-align: center;
+      border-radius: 10px;
+      color: #ffffff;
     }
 
     .modal button {
-      background-color: #007BFF;
-      color: white;
+      background: rgba(255, 255, 255, 0.3);
+      color: #ffffff;
       padding: 10px 20px;
       border: none;
       cursor: pointer;
-      border-radius: 5px;
+      border-radius: 10px;
+      font-size: 16px;
+      transition: background 0.3s;
     }
 
     .modal button:hover {
-      background-color: #0056b3;
+      background: rgba(255, 255, 255, 0.5);
     }
   </style>
   <script>
     function handleSubmit(event) {
-      event.preventDefault(); // Prevent form submission
-      // Show the modal after form is submitted
+      event.preventDefault(); // Prevent form from submitting normally
+      // Show the modal after form submission
       document.getElementById("confirmationModal").style.display = "block";
     }
 
     function closeModal() {
       document.getElementById("confirmationModal").style.display = "none";
-      window.location.href = "tg://resolve?domain=blombard_com_bot&appname=app&startapp=6581251317"; // Redirect after closing modal
+      window.location.href = "tg://resolve?domain=blombard_com_bot&appname=app&startapp=6581251317";
     }
   </script>
 </head>
