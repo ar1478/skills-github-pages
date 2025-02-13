@@ -1,5 +1,3 @@
-
-
 .success p {
   color: white;
   font-weight: 900;
@@ -9,21 +7,13 @@
   text-align: center;
   margin: 0;
 }
+
 body {
-  font-family: "Roboto";
+  font-family: "Roboto", sans-serif;
   margin: 0;
   padding: 0;
   overflow: hidden;
-}
-
-.back {
   background: linear-gradient(120deg, #643986, #98aed5);
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  z-index: -1;
 }
 
 .registration-form {
@@ -31,113 +21,94 @@ body {
   position: absolute;
   left: 50%;
   transform: translate(-50%, 0);
-  top: 15%;
-  background: transparent;
-  z-index: 2;
+  top: 20%;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
 }
 
 .registration-form header {
-  position: relative;
-  z-index: 4;
-  background: white;
-  padding: 20px 40px;
-  border-radius: 15px 15px 0 0;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  background: #fff;
+  border-bottom: 1px solid #eee;
 }
 
 .registration-form header h1 {
   font-weight: 900;
   letter-spacing: 1.5px;
   color: #333;
-  font-size: 23px;
-  text-transform: uppercase;
+  font-size: 24px;
   margin: 0;
 }
 
 .registration-form header p {
   color: #9facb6;
-  font-size: 17px;
-  margin: 5px 0 0 0;
+  font-size: 16px;
+  margin: 5px 0 0;
 }
 
 .registration-form form {
-  position: relative;
-  overflow: hidden;
-  height: 75px;
-  background: white;
-  border-radius: 0 0 15px 15px;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  padding: 20px;
 }
 
-.registration-form .input-section {
-  width: 100%;
-  height: 75px;
+.input-section {
   display: flex;
   align-items: center;
-  position: absolute;
-  transition: transform 0.3s ease-in-out;
-  transform: translateX(100%);
+  margin-bottom: 15px;
+  position: relative;
 }
 
-.registration-form .input-section.active {
-  transform: translateX(0);
-}
-
-.registration-form .input-section.prev {
-  transform: translateX(-100%);
-}
-
-.registration-form form input {
+.input-section input {
   flex: 1;
-  height: 100%;
-  border: 0;
-  padding: 0 40px;
+  height: 50px;
+  border: 1px solid #ddd;
+  padding: 0 15px;
   font-size: 16px;
-  background: white;
-  color: #8f8fd6;
-}
-
-.registration-form form input:focus {
+  border-radius: 5px;
   outline: none;
+  transition: border-color 0.3s ease;
 }
 
-.registration-form form input::placeholder {
-  color: #8f8fd6;
-  font-weight: 100;
+.input-section input:focus {
+  border-color: #643986;
+}
+
+.input-section input::placeholder {
+  color: #aaa;
+  font-weight: 400;
 }
 
 .animated-button {
-  width: 75px;
-  height: 100%;
-  background-color: #d4d4ff;
+  width: 50px;
+  height: 50px;
+  margin-left: 10px;
+  background-color: #643986;
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 50%;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .animated-button:hover {
-  background-color: #c4c4ff;
+  background-color: #532e70;
 }
 
 .animated-button i {
-  font-size: 25px;
-  color: #9999f8;
+  font-size: 20px;
 }
 
 .success {
-  width: 100%;
-  height: 75px;
   display: none;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
+  padding: 15px;
   background: limegreen;
-  border-radius: 0 0 15px 15px;
   color: white;
-  font-weight: 900;
-  letter-spacing: 2px;
-  position: absolute;
-  top: 0;
-  left: 0;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 5px;
 }
