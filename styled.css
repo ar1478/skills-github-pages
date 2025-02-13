@@ -16,7 +16,7 @@ body {
 }
 .registration-form form input {
   display: block;
-  width: 100%;
+  width: 72%;
   height: 100%;
   padding: 0 20px;
   border: none;
