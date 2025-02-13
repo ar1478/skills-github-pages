@@ -6,7 +6,35 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,900' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Added swipe transition styles */
+    .registration-form form {
+      position: relative;
+      overflow: hidden;
+      height: 300px;
+    }
+
+    .input-section {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      transition: transform 0.3s ease-in-out;
+      transform: translateX(100%);
+    }
+
+    .input-section.active {
+      transform: translateX(0);
+    }
+
+    .input-section.prev {
+      transform: translateX(-100%);
+    }
+
+    .success {
+      display: none;
+    }
+  </style>
 </head>
 
 <body>
@@ -17,7 +45,7 @@
       <p>Fill in all informations</p>
     </header>
     <form>
-      <div class="input-section email-section">
+      <div class="input-section email-section active">
         <input class="email" type="email" placeholder="ENTER YOUR E-MAIL HERE" autocomplete="off"/>
         <div class="animated-button"><span class="icon-paper-plane"><i class="fa fa-envelope-o"></i></span><span class="next-button email"><i class="fa fa-arrow-up"></i></span></div>
       </div>
@@ -37,32 +65,84 @@
 
   <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <script>
+    // Swipe detection variables
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const swipeThreshold = 50;
+
     function goToNextSection(currentSection, nextSection) {
-      $(currentSection).fadeOut(300);
-      $(nextSection).fadeIn(300);
+      currentSection.removeClass('active').addClass('prev');
+      nextSection.addClass('active');
     }
 
-    // When the user presses "Enter" after typing their email
-    $(".email").on("keypress", function (e) {
+    function goToPreviousSection(currentSection, prevSection) {
+      currentSection.removeClass('active').addClass('next');
+      prevSection.addClass('active').removeClass('prev');
+    }
+
+    // Touch event handlers
+    $('form').on('touchstart', function(e) {
+      touchStartX = e.originalEvent.touches[0].clientX;
+    });
+
+    $('form').on('touchend', function(e) {
+      touchEndX = e.originalEvent.changedTouches[0].clientX;
+      handleSwipe();
+    });
+
+    // Mouse event handlers
+    $('form').on('mousedown', function(e) {
+      touchStartX = e.clientX;
+    });
+
+    $('form').on('mouseup', function(e) {
+      touchEndX = e.clientX;
+      handleSwipe();
+    });
+
+    function handleSwipe() {
+      const deltaX = touchEndX - touchStartX;
+      
+      if (Math.abs(deltaX) > swipeThreshold) {
+        const currentSection = $('.input-section.active');
+        
+        if (deltaX < 0) { // Swipe left (next section)
+          const nextSection = currentSection.next('.input-section');
+          if (nextSection.length) goToNextSection(currentSection, nextSection);
+        } else { // Swipe right (previous section)
+          const prevSection = currentSection.prev('.input-section');
+          if (prevSection.length) goToPreviousSection(currentSection, prevSection);
+        }
+      }
+      
+      // Reset values
+      touchStartX = 0;
+      touchEndX = 0;
+    }
+
+    // Keyboard event handlers
+    $(".email").on("keypress", function(e) {
       if (e.key === "Enter" && $(this).val().trim() !== "") {
         e.preventDefault();
-        goToNextSection(".email-section", ".password-section");
+        const currentSection = $(this).closest('.input-section');
+        const nextSection = currentSection.next('.input-section');
+        goToNextSection(currentSection, nextSection);
       }
     });
 
-    // When the user presses "Enter" after typing their password
-    $(".password").on("keypress", function (e) {
+    $(".password").on("keypress", function(e) {
       if (e.key === "Enter" && $(this).val().trim() !== "") {
         e.preventDefault();
-        goToNextSection(".password-section", ".repeat-password-section");
+        const currentSection = $(this).closest('.input-section');
+        const nextSection = currentSection.next('.input-section');
+        goToNextSection(currentSection, nextSection);
       }
     });
 
-    // When the user presses "Enter" after repeating their password
-    $(".repeat-password").on("keypress", function (e) {
+    $(".repeat-password").on("keypress", function(e) {
       if (e.key === "Enter" && $(this).val().trim() !== "") {
         e.preventDefault();
-        $(".repeat-password-section").fadeOut(300);
+        $(".input-section.active").removeClass('active');
         $(".success").fadeIn(300);
       }
     });
