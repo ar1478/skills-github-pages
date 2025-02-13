@@ -86,15 +86,7 @@ body {
   transform: translateX(-100%);
 }
 
-.registration-form form input {
-  flex: 1;
-  height: 100%;
-  border: 0;
-  padding: 0 40px;
-  font-size: 16px;
-  background: white;
-  color: #8f8fd6;
-}
+
 
 .registration-form form input:focus {
   outline: none;
