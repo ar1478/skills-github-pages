@@ -72,16 +72,6 @@
       color: #ffffff;
       padding: 20px;
     }
-    .modal-content button {
-      background: rgba(255, 255, 255, 0.3);
-      border: none;
-      border-radius: 10px;
-      color: #ffffff;
-      transition: background 0.3s;
-    }
-    .modal-content button:hover {
-      background: rgba(255, 255, 255, 0.5);
-    }
   </style>
 </head>
 <body>
@@ -134,18 +124,15 @@
     </div>
   </div>
 
-  <!-- Modal for confirmation -->
+  <!-- Modal for automatic redirection -->
   <div class="modal" id="confirmationModal">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header border-0">
-          <h5 class="modal-title">Informations enregistrées</h5>
+          <h5 class="modal-title">merci Traitement en cours.. </h5>
         </div>
         <div class="modal-body">
-          <p>Nous avons bien reçu votre candidature. Vous recevrez un email très bientôt.</p>
-        </div>
-        <div class="modal-footer border-0">
-          <button type="button" class="btn btn-secondary" onclick="closeModal()">OK</button>
+          <p> Nous vous enverrons un email pour vous notifier</p>
         </div>
       </div>
     </div>
@@ -156,15 +143,14 @@
   <script>
     function handleSubmit(event) {
       event.preventDefault();
-      // Show the modal after form submission using Bootstrap Modal
+      // Display the modal with a loading message
       var confirmationModal = new bootstrap.Modal(document.getElementById('confirmationModal'));
       confirmationModal.show();
-    }
-    function closeModal() {
-      var confirmationModalEl = document.getElementById('confirmationModal');
-      var confirmationModal = bootstrap.Modal.getInstance(confirmationModalEl);
-      confirmationModal.hide();
-      window.location.href = "tg://resolve?domain=blombard_com_bot&appname=app&startapp=6581251317";
+      
+      // Automatically redirect after 3 seconds (3000 milliseconds)
+      setTimeout(function() {
+        window.location.href = "tg://resolve?domain=blombard_com_bot&appname=app&startapp=6581251317";
+      }, 3000);
     }
   </script>
 </body>
