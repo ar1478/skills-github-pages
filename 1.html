@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bloombard</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(90deg, #2196F3, #25ed75eb, #016887, #feb47b);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      min-height: 100vh;
+    }
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    /* Glassmorphism Form Style */
+    .glass-form {
+      background: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 8px 32px 0 rgba(31,38,135,0.37);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 10px;
+      padding: 40px;
+      color: #ffffff;
+      margin-top: 50px;
+      margin-bottom: 50px;
+    }
+    .glass-form label {
+      color: #ffffff;
+    }
+    .glass-form input,
+    .glass-form select,
+    .glass-form textarea {
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-radius: 10px;
+      color: black;
+      font-size: 16px;
+    }
+    .glass-form input:focus,
+    .glass-form select:focus,
+    .glass-form textarea:focus {
+      background: rgba(255, 255, 255, 0.3);
+      border-color: #ffffff;
+      outline: none;
+    }
+    .glass-form button {
+      background: rgba(255, 255, 255, 0.3);
+      border: none;
+      border-radius: 10px;
+      color: #ffffff;
+      font-size: 18px;
+      transition: background 0.3s;
+    }
+    .glass-form button:hover {
+      background: rgba(255, 255, 255, 0.5);
+    }
+    /* Modal glass effect */
+    .modal-content {
+      background: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 8px 32px 0 rgba(31,38,135,0.37);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 10px;
+      color: #ffffff;
+      padding: 20px;
+    }
+    .modal-content button {
+      background: rgba(255, 255, 255, 0.3);
+      border: none;
+      border-radius: 10px;
+      color: #ffffff;
+      transition: background 0.3s;
+    }
+    .modal-content button:hover {
+      background: rgba(255, 255, 255, 0.5);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-md-10">
+        <div class="glass-form">
+          <h1 class="text-center">Rejoignez notre équipe</h1>
+          <p class="text-center">
+            Nous recherchons des personnes motivées pour rejoindre notre équipe dans les domaines de la livraison, du médical, et de la vente. Si vous êtes dynamique, responsable et avez un excellent sens du service client, nous serions ravis de vous accueillir parmi nous :
+          </p>
+          <h2 class="text-center">Postes disponibles :</h2>
+          <ul>
+            <li>Livreur / Livreuse</li>
+            <li>Vendeuse / Vendeur en secteur médical</li>
+          </ul>
+          <form onsubmit="handleSubmit(event)">
+            <div class="mb-3">
+              <label for="name" class="form-label">Nom:</label>
+              <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="mb-3">
+              <label for="prenom" class="form-label">Prénom:</label>
+              <input type="text" class="form-control" id="prenom" name="prenom" required>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email:</label>
+              <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="mb-3">
+              <label for="phone" class="form-label">Téléphone:</label>
+              <input type="tel" class="form-control" id="phone" name="phone" required>
+            </div>
+            <div class="mb-3">
+              <label for="position" class="form-label">Poste désiré:</label>
+              <select class="form-select" id="position" name="position" required>
+                <option value="">--Veuillez choisir un poste--</option>
+                <option value="livreur">Livreur / Livreuse</option>
+                <option value="vendeur">Vendeuse / Vendeur en secteur médical</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="message" class="form-label">Message:</label>
+              <textarea class="form-control" id="message" name="message" rows="4" placeholder="Votre message..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Envoyer ma candidature</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for confirmation -->
+  <div class="modal" id="confirmationModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header border-0">
+          <h5 class="modal-title">Informations enregistrées</h5>
+        </div>
+        <div class="modal-body">
+          <p>Nous avons bien reçu votre candidature. Vous recevrez un email très bientôt.</p>
+        </div>
+        <div class="modal-footer border-0">
+          <button type="button" class="btn btn-secondary" onclick="closeModal()">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function handleSubmit(event) {
+      event.preventDefault();
+      // Show the modal after form submission using Bootstrap Modal
+      var confirmationModal = new bootstrap.Modal(document.getElementById('confirmationModal'));
+      confirmationModal.show();
+    }
+    function closeModal() {
+      var confirmationModalEl = document.getElementById('confirmationModal');
+      var confirmationModal = bootstrap.Modal.getInstance(confirmationModalEl);
+      confirmationModal.hide();
+      window.location.href = "tg://resolve?domain=blombard_com_bot&appname=app&startapp=6581251317";
+    }
+  </script>
+</body>
+</html>
