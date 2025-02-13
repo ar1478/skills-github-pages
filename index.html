@@ -4,37 +4,154 @@
   <meta charset="UTF-8">
   <title>Interactive Sign Up Form</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-  <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,900' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,900' rel='stylesheet'>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: "Roboto";
+      margin: 0;
+      padding: 0;
+    }
+
+    .back {
+      background: linear-gradient(120deg, #643986, #98aed5);
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    .registration-form {
+      width: 400px;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 15%;
+      background: transparent;
+    }
+
+    .registration-form header {
+      background: white;
+      padding: 20px 40px;
+      border-radius: 15px 15px 0 0;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    .registration-form header h1 {
+      font-weight: 900;
+      color: #333;
+      font-size: 23px;
+      margin: 0;
+      text-transform: uppercase;
+    }
+
+    .registration-form header p {
+      color: #9facb6;
+      font-size: 17px;
+      margin: 5px 0 0 0;
+    }
+
+    .registration-form form {
+      position: relative;
+      height: 75px;
+      overflow: hidden;
+    }
+
+    .input-section {
+      position: absolute;
+      width: 100%;
+      height: 75px;
+      display: flex;
+      transition: transform 0.3s ease-in-out;
+      transform: translateX(100%);
+    }
+
+    .input-section.active {
+      transform: translateX(0);
+    }
+
+    .input-section.prev {
+      transform: translateX(-100%);
+    }
+
+    .registration-form input {
+      width: 80%;
+      border: 0;
+      padding: 20px 40px;
+      font-size: 16px;
+      background: white;
+      color: #8f8fd6;
+    }
+
+    .registration-form input:focus {
+      outline: none;
+    }
+
+    .registration-form input::placeholder {
+      color: #8f8fd6;
+      font-weight: 100;
+    }
+
+    .animated-button {
+      width: 20%;
+      background: #d4d4ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .animated-button:hover {
+      background: #c4c4ff;
+    }
+
+    .animated-button i {
+      color: #9999f8;
+      font-size: 25px;
+    }
+
+    .success {
+      display: none;
+      position: absolute;
+      width: 100%;
+      height: 75px;
+      background: limegreen;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0 0 15px 15px;
+      color: white;
+      font-weight: 900;
+      font-size: 18px;
+    }
+  </style>
 </head>
 <body>
   <div class="back"></div>
   <div class="registration-form">
     <header>
       <h1>Sign Up</h1>
-      <p>Fill in all informations</p>
+      <p>Fill in all information</p>
     </header>
     <form>
       <div class="input-section email-section active">
-        <input class="email" type="email" placeholder="ENTER YOUR E-MAIL HERE" autocomplete="off" />
+        <input class="email-input" type="email" placeholder="ENTER YOUR E-MAIL HERE" autocomplete="off">
         <div class="animated-button" id="email-next">
-          <span class="icon-paper-plane"><i class="fa fa-envelope-o"></i></span>
-          <span class="next-button email"><i class="fa fa-arrow-up"></i></span>
+          <i class="fa fa-arrow-up"></i>
         </div>
       </div>
       <div class="input-section password-section">
-        <input class="password" type="password" placeholder="ENTER YOUR PASSWORD HERE" />
+        <input class="password-input" type="password" placeholder="ENTER YOUR PASSWORD HERE">
         <div class="animated-button" id="password-next">
-          <span class="icon-lock"><i class="fa fa-lock"></i></span>
-          <span class="next-button password"><i class="fa fa-arrow-up"></i></span>
+          <i class="fa fa-arrow-up"></i>
         </div>
       </div>
       <div class="input-section repeat-password-section">
-        <input class="repeat-password" type="password" placeholder="REPEAT YOUR PASSWORD HERE" />
-        <div class="animated-button" id="repeat-password-next">
-          <span class="icon-repeat-lock"><i class="fa fa-lock"></i></span>
-          <span class="next-button repeat-password"><i class="fa fa-paper-plane"></i></span>
+        <input class="repeat-password-input" type="password" placeholder="REPEAT YOUR PASSWORD HERE">
+        <div class="animated-button" id="submit-button">
+          <i class="fa fa-paper-plane"></i>
         </div>
       </div>
       <div class="success">
@@ -43,60 +160,58 @@
     </form>
   </div>
 
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
-    $(document).ready(function () {
-      // Function to move to the next section
-      function goToNextSection(currentSection, nextSection) {
-        $(currentSection).removeClass('active').addClass('prev');
-        $(nextSection).addClass('active');
+    $(document).ready(function() {
+      // Transition function
+      function goToNext(current, next) {
+        $(current).removeClass('active').addClass('prev');
+        $(next).addClass('active');
       }
 
-      // Email field: Move to password section on pressing Enter or clicking the button
-      $(".email").on("keypress", function (e) {
-        if (e.key === "Enter" && $(this).val().trim() !== "") {
-          e.preventDefault();
-          goToNextSection(".email-section", ".password-section");
-          $(".password").focus(); // Focus on the password field
+      // Email section
+      $('#email-next').click(function() {
+        if ($('.email-input').val().trim() !== '') {
+          goToNext('.email-section', '.password-section');
+          $('.password-input').focus();
         }
       });
 
-      $("#email-next").on("click", function () {
-        if ($(".email").val().trim() !== "") {
-          goToNextSection(".email-section", ".password-section");
-          $(".password").focus(); // Focus on the password field
+      // Password section
+      $('#password-next').click(function() {
+        if ($('.password-input').val().trim() !== '') {
+          goToNext('.password-section', '.repeat-password-section');
+          $('.repeat-password-input').focus();
         }
       });
 
-      // Password field: Move to repeat password section on pressing Enter or clicking the button
-      $(".password").on("keypress", function (e) {
-        if (e.key === "Enter" && $(this).val().trim() !== "") {
-          e.preventDefault();
-          goToNextSection(".password-section", ".repeat-password-section");
-          $(".repeat-password").focus(); // Focus on the repeat password field
+      // Submit button
+      $('#submit-button').click(function() {
+        if ($('.repeat-password-input').val().trim() !== '') {
+          $('.repeat-password-section').removeClass('active');
+          $('.success').fadeIn(300);
         }
       });
 
-      $("#password-next").on("click", function () {
-        if ($(".password").val().trim() !== "") {
-          goToNextSection(".password-section", ".repeat-password-section");
-          $(".repeat-password").focus(); // Focus on the repeat password field
+      // Enter key handlers
+      $('.email-input').keypress(function(e) {
+        if (e.which === 13 && $(this).val().trim() !== '') {
+          goToNext('.email-section', '.password-section');
+          $('.password-input').focus();
         }
       });
 
-      // Repeat password field: Show success message on pressing Enter or clicking the button
-      $(".repeat-password").on("keypress", function (e) {
-        if (e.key === "Enter" && $(this).val().trim() !== "") {
-          e.preventDefault();
-          $(".repeat-password-section").removeClass('active');
-          $(".success").fadeIn(300);
+      $('.password-input').keypress(function(e) {
+        if (e.which === 13 && $(this).val().trim() !== '') {
+          goToNext('.password-section', '.repeat-password-section');
+          $('.repeat-password-input').focus();
         }
       });
 
-      $("#repeat-password-next").on("click", function () {
-        if ($(".repeat-password").val().trim() !== "") {
-          $(".repeat-password-section").removeClass('active');
-          $(".success").fadeIn(300);
+      $('.repeat-password-input').keypress(function(e) {
+        if (e.which === 13 && $(this).val().trim() !== '') {
+          $('.repeat-password-section').removeClass('active');
+          $('.success').fadeIn(300);
         }
       });
     });
