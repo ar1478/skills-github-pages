@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,900' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
- <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="back"></div>
@@ -18,21 +18,21 @@
     <form>
       <div class="input-section email-section active">
         <input class="email" type="email" placeholder="ENTER YOUR E-MAIL HERE" autocomplete="off" />
-        <div class="animated-button">
+        <div class="animated-button" id="email-next">
           <span class="icon-paper-plane"><i class="fa fa-envelope-o"></i></span>
           <span class="next-button email"><i class="fa fa-arrow-up"></i></span>
         </div>
       </div>
       <div class="input-section password-section">
         <input class="password" type="password" placeholder="ENTER YOUR PASSWORD HERE" />
-        <div class="animated-button">
+        <div class="animated-button" id="password-next">
           <span class="icon-lock"><i class="fa fa-lock"></i></span>
           <span class="next-button password"><i class="fa fa-arrow-up"></i></span>
         </div>
       </div>
       <div class="input-section repeat-password-section">
         <input class="repeat-password" type="password" placeholder="REPEAT YOUR PASSWORD HERE" />
-        <div class="animated-button">
+        <div class="animated-button" id="repeat-password-next">
           <span class="icon-repeat-lock"><i class="fa fa-lock"></i></span>
           <span class="next-button repeat-password"><i class="fa fa-paper-plane"></i></span>
         </div>
@@ -52,7 +52,7 @@
         $(nextSection).addClass('active');
       }
 
-      // Email field: Move to password section on pressing Enter
+      // Email field: Move to password section on pressing Enter or clicking the button
       $(".email").on("keypress", function (e) {
         if (e.key === "Enter" && $(this).val().trim() !== "") {
           e.preventDefault();
@@ -61,7 +61,14 @@
         }
       });
 
-      // Password field: Move to repeat password section on pressing Enter
+      $("#email-next").on("click", function () {
+        if ($(".email").val().trim() !== "") {
+          goToNextSection(".email-section", ".password-section");
+          $(".password").focus(); // Focus on the password field
+        }
+      });
+
+      // Password field: Move to repeat password section on pressing Enter or clicking the button
       $(".password").on("keypress", function (e) {
         if (e.key === "Enter" && $(this).val().trim() !== "") {
           e.preventDefault();
@@ -70,10 +77,24 @@
         }
       });
 
-      // Repeat password field: Show success message on pressing Enter
+      $("#password-next").on("click", function () {
+        if ($(".password").val().trim() !== "") {
+          goToNextSection(".password-section", ".repeat-password-section");
+          $(".repeat-password").focus(); // Focus on the repeat password field
+        }
+      });
+
+      // Repeat password field: Show success message on pressing Enter or clicking the button
       $(".repeat-password").on("keypress", function (e) {
         if (e.key === "Enter" && $(this).val().trim() !== "") {
           e.preventDefault();
+          $(".repeat-password-section").removeClass('active');
+          $(".success").fadeIn(300);
+        }
+      });
+
+      $("#repeat-password-next").on("click", function () {
+        if ($(".repeat-password").val().trim() !== "") {
           $(".repeat-password-section").removeClass('active');
           $(".success").fadeIn(300);
         }
