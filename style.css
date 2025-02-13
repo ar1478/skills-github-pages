@@ -7,13 +7,21 @@
   text-align: center;
   margin: 0;
 }
-
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto";
   margin: 0;
   padding: 0;
   overflow: hidden;
+}
+
+.back {
   background: linear-gradient(120deg, #643986, #98aed5);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
 }
 
 .registration-form {
@@ -21,94 +29,113 @@ body {
   position: absolute;
   left: 50%;
   transform: translate(-50%, 0);
-  top: 20%;
-  background: white;
-  border-radius: 15px;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
+  top: 15%;
+  background: transparent;
+  z-index: 2;
 }
 
 .registration-form header {
-  padding: 20px;
-  text-align: center;
-  background: #fff;
-  border-bottom: 1px solid #eee;
+  position: relative;
+  z-index: 4;
+  background: white;
+  padding: 20px 40px;
+  border-radius: 15px 15px 0 0;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
 }
 
 .registration-form header h1 {
   font-weight: 900;
   letter-spacing: 1.5px;
   color: #333;
-  font-size: 24px;
+  font-size: 23px;
+  text-transform: uppercase;
   margin: 0;
 }
 
 .registration-form header p {
   color: #9facb6;
-  font-size: 16px;
-  margin: 5px 0 0;
+  font-size: 17px;
+  margin: 5px 0 0 0;
 }
 
 .registration-form form {
-  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  height: 75px;
+  background: white;
+  border-radius: 0 0 15px 15px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
 }
 
-.input-section {
+.registration-form .input-section {
+  width: 100%;
+  height: 75px;
   display: flex;
   align-items: center;
-  margin-bottom: 15px;
-  position: relative;
+  position: absolute;
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(100%);
 }
 
-.input-section input {
+.registration-form .input-section.active {
+  transform: translateX(0);
+}
+
+.registration-form .input-section.prev {
+  transform: translateX(-100%);
+}
+
+.registration-form form input {
   flex: 1;
-  height: 50px;
-  border: 1px solid #ddd;
-  padding: 0 15px;
+  height: 100%;
+  border: 0;
+  padding: 0 40px;
   font-size: 16px;
-  border-radius: 5px;
+  background: white;
+  color: #8f8fd6;
+}
+
+.registration-form form input:focus {
   outline: none;
-  transition: border-color 0.3s ease;
 }
 
-.input-section input:focus {
-  border-color: #643986;
-}
-
-.input-section input::placeholder {
-  color: #aaa;
-  font-weight: 400;
+.registration-form form input::placeholder {
+  color: #8f8fd6;
+  font-weight: 100;
 }
 
 .animated-button {
-  width: 50px;
-  height: 50px;
-  margin-left: 10px;
-  background-color: #643986;
-  color: #fff;
+  width: 75px;
+  height: 100%;
+  background-color: #d4d4ff;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .animated-button:hover {
-  background-color: #532e70;
+  background-color: #c4c4ff;
 }
 
 .animated-button i {
-  font-size: 20px;
+  font-size: 25px;
+  color: #9999f8;
 }
 
 .success {
+  width: 100%;
+  height: 75px;
   display: none;
-  text-align: center;
-  padding: 15px;
+  align-items: center;
+  justify-content: center;
   background: limegreen;
+  border-radius: 0 0 15px 15px;
   color: white;
-  font-size: 18px;
-  font-weight: bold;
-  border-radius: 5px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
