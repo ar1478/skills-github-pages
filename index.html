@@ -10,8 +10,26 @@
       font-family: Arial, sans-serif;
       height: 100%;
       width: 100%;
-      background: url('78.jpg') no-repeat center center fixed;
-      background-size: cover;
+      overflow: hidden;
+    }
+
+    /* Animated background */
+    body {
+      background: linear-gradient(90deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1, #fad0c4);
+      background-size: 300% 300%;
+      animation: gradientBG 10s ease infinite;
+    }
+
+    @keyframes gradientBG {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
     }
 
     #job-form {
@@ -23,24 +41,29 @@
       max-width: 600px;
       margin: 100px auto;
     }
+
     #job-form h1,
     #job-form h2,
     #job-form p {
       margin: 10px 0;
       text-align: center;
     }
+
     #job-form ul {
       margin: 10px 0 20px 20px;
     }
+
     #job-form form div {
       margin-bottom: 15px;
     }
+
     #job-form label {
       display: inline-block;
       width: 150px;
       vertical-align: top;
       margin-top: 5px;
     }
+
     #job-form input,
     #job-form select,
     #job-form textarea {
@@ -53,12 +76,14 @@
       font-size: 16px;
       box-sizing: border-box;
     }
+
     #job-form input:focus,
     #job-form select:focus,
     #job-form textarea:focus {
       border-color: #0056b3;
       outline: none;
     }
+
     #job-form button {
       padding: 10px 20px;
       background-color: #007BFF;
@@ -68,23 +93,25 @@
       cursor: pointer;
       font-size: 16px;
     }
+
     #job-form button:hover {
       background-color: #0056b3;
     }
 
     /* Modal styles */
     .modal {
-      display: none;
+      display: none; 
       position: fixed;
-      z-index: 1;
+      z-index: 1; 
       left: 0;
       top: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
+      background-color: rgba(0,0,0,0.5);
       overflow: auto;
       padding-top: 60px;
     }
+
     .modal-content {
       background-color: #fefefe;
       margin: 5% auto;
@@ -94,6 +121,7 @@
       max-width: 400px;
       text-align: center;
     }
+
     .modal button {
       background-color: #007BFF;
       color: white;
@@ -102,6 +130,7 @@
       cursor: pointer;
       border-radius: 5px;
     }
+
     .modal button:hover {
       background-color: #0056b3;
     }
